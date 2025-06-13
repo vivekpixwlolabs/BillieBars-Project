@@ -437,6 +437,12 @@ nav#navbar-collapse {
 .slide-inner {
     height: auto;
 }
+.swiper-next {
+  right: 18px;
+}
+.swiper-prev{
+  left:18px;
+}
 }
 
 @media (max-width:480px) {
@@ -759,7 +765,7 @@ nav#navbar-collapse {
 }
 .content-paragraph {
   position: relative;
-}
+} 
 .testimonial-box.container-1440::after {
   position: absolute;
   content: "";
@@ -844,6 +850,7 @@ section.instagram-feed .container-1440::before {
   align-items: center;
   max-width: 1200px;
   margin: auto;
+  padding-bottom: 20px;
 }
 
 .insta-header h2 a {
@@ -860,11 +867,14 @@ section.instagram-feed .container-1440::before {
 }
 
 .insta-gallery ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
-  margin-top: 20px;
-  list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      width: calc(100% + 10px);
+      margin-left: -10px;
+}
+.insta-gallery ul li {
+width: 16.666%;
+padding-left: 10px;
 }
 .insta-gallery ul li a {
   display: block;
@@ -879,27 +889,41 @@ section.instagram-feed .container-1440::before {
   left: 0;
   top: 0;
   width: 100%;
+  height: 100%;
 }
 section.instagram-feed svg {
   position: relative;
   top: -14px;
 }
-@media(max-width:800px){
+@media(max-width:980px){
   .insta-header {
     flex-direction: column;
     align-items: center;
 }
+.insta-gallery ul li a {
+  height: calc(33.3333vw - 13.333px);
+  max-height: none;
+}
+.insta-header h2 a {
+  font-size: 25px;
+  padding-bottom: 15px;
+  display: block;
+}
+.insta-gallery  ul li {
+  width: 33.333%;
+  margin-bottom: 10px;
+}
 }
 
-@media(max-width:800px){
-  .insta-header h2 a {
-    font-size: 25px;
-    padding-bottom: 15px;
-    display: block;
-  }
+
+@media(max-width:480px){
+.insta-gallery ul li a {
+  height: calc(-15px + 50vw);
 }
-
-
+.insta-gallery ul li {
+  width: 50%;
+}
+}
 
 /* ========== SINGLE IMAGE SECTION ========== */
 .single-image-section .image-section {
@@ -1140,6 +1164,11 @@ h4.accordion-toggle.active svg {
 }
 h4.accordion-toggle svg {
   display: block;
+}
+}
+@media (max-width:340px){
+.footer-newsletter input[type="email"] {
+  width: 20%;
 }
 }
 /* ========== RESPONSIVE ADJUSTMENTS ========== */
