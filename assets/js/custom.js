@@ -23,15 +23,56 @@
         prevEl: ".swiper-prev",
   },
 });
-   
+
+
+
+const threeColumnSlider = new Swiper(".three-column-product", {
+            slidesPerView: 3,
+            spaceBetween: 10,
+            resistance: !1,
+            shortSwipes: !1,
+            navigation: { nextEl: ".swiper-next-product", prevEl: ".swiper-prev-product" },
+            breakpoints: { 0: { slidesPerView: 1 }, 481: { slidesPerView: 2 }, 769: { slidesPerView: 3 } },
+        })
+
+const productRightSlider = new Swiper(".product-right-slider", {
+            slidesPerView: "auto",
+            spaceBetween: 10,
+            resistance: !1,
+            shortSwipes: !1,
+            navigation: { nextEl: ".next-product", prevEl: ".prev-product" },
+        })
+
+
+
+
 // Product Swiper
-const productSwiper = new Swiper(".product-swiper", {
-  loop: true,
-  navigation: {
-    nextEl: ".swiper-next-product",
-    prevEl: ".swiper-prev-product",
-  },
-});
+
+let productSwiper = null;
+function initProductSwiper() {
+  const isMobile = window.innerWidth < 786;
+
+  if (isMobile && productSwiper === null) {
+    productSwiper = new Swiper(".product-swiper", {
+      loop: true,
+      spaceBetween: 20,
+      navigation: {
+        nextEl: ".swiper-next-product",
+        prevEl: ".swiper-prev-product",
+      },
+      slidesPerView: 1, // ✅ mobile view only
+    });
+  } else if (!isMobile && productSwiper !== null) {
+    productSwiper.destroy(true, true);
+    productSwiper = null;
+  }
+}
+
+
+// Init on load and resize
+window.addEventListener("load", initProductSwiper);
+window.addEventListener("resize", initProductSwiper);
+
 
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -63,3 +104,17 @@ const productSwiper = new Swiper(".product-swiper", {
       });
     });
   });
+  const marquee = document.getElementById('marqueeContent');
+  let offset = 0;
+  let speed = 1;
+
+  function animate() {
+    offset -= speed;
+    if (Math.abs(offset) >= marquee.offsetWidth / 2) {
+      offset = 0;
+    }
+    marquee.style.transform = `translateX(${offset}px)`;
+    requestAnimationFrame(animate);
+  }
+
+  animate();
